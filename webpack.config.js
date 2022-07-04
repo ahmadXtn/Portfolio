@@ -20,10 +20,20 @@ const PATHS = {
 
 const config = {
     entry: "./src/index.js",
+    //entry: {app:"./src/index.js"},
     output: {
-        filename: 'name.[contenthash].js',
+        filename: '[name].js',
         path: PATHS.build,
-        clean: true
+        clean: true,
+        asyncChunks: false,
+    },
+
+    /* https://webpack.js.org/configuration/optimization/ */
+    /* https://webpack.js.org/configuration/optimization/#optimizationruntimechunk */
+
+    optimization: {
+        runtimeChunk: 'single',
+        // The value 'single' instead creates a runtime file to be shared for all generated chunks
     },
     devServer: {
         open: false,
@@ -62,21 +72,17 @@ const config = {
                 ],
             },
             {
-                test: /\.(png|jpg|gif)$/i,
-                type: "asset",
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: "asset",
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'fonts/'
-                        }
-                    }
-                ]
+                test: /\.(eot|svg|ttf|woff|woff2)$/i,
+                type: "asset/resource",
+                generator: {                        /*https://webpack.js.org/configuration/module/#modulegenerator*/
+                    outputPath: 'fonts/',
+                    filename: '[hash][ext][query]', /*https://webpack.js.org/guides/asset-modules/#custom-output-filename*/
+
+                },
             },
         ],
     },
