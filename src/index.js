@@ -1,16 +1,13 @@
-import _ from 'lodash';
-import $ from 'jquery';
+import headingStyle from './headingStyle.css';
+import style from './style.css';
 
-function component(){
-
-	const divEm=document.createElement('h1');
-
-	divEm.innerHTML=_.join(['Webpack','5'],' ');
-
-	$(divEm).css('color','black');
+import 'font-awesome/css/font-awesome.css';
 
 
-	return divEm;
-}
 
-document.body.appendChild(component());
+const env = process.env.NODE_ENV;
+
+
+setTimeout((ev) => {
+    document.getElementById("env").innerText = env;
+}, 6000);
