@@ -3,14 +3,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 
 //const stylesHandler = {loader: 'style-loader', options: {injectType: 'linkTag'}};
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-console.log(isProduction);
-console.log(stylesHandler);
 
 const PATHS = {
     build: path.resolve(__dirname, 'build'),
@@ -32,31 +31,43 @@ const config = {
     /* https://webpack.js.org/configuration/optimization/#optimizationruntimechunk */
 
     optimization: {
-        runtimeChunk: 'single',
+        chunkIds: 'named',
+        runtimeChunk: {
+            name: (entrypoint) => `runtimechunk~${entrypoint.name}`,
+        },
+        splitChunks: {
+            chunks: 'all',
+        }
         // The value 'single' instead creates a runtime file to be shared for all generated chunks
     },
     devServer: {
         open: false,
         host: "localhost",
-        port: 3300
+        port: 3300,
+        watchFiles: ['src/**/*.html', 'src/**/*.css', 'src/**/*.js'],
     },
+    /* https://webpack.js.org/configuration/plugins/ */
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./index.html",
+            title: "Portfolio",
+            template: "./src/index.html",
             scriptLoading: "defer",
-            inject: true /* automatic insertion of CSS link tag*/
+            inject: true /* automatic insertion of CSS link tag*/,
+
+            /*https://github.com/kangax/html-minifier#options-quick-reference*/
         }),
         new MiniCssExtractPlugin({
             chunkFilename: '[id].css',
         }),
+        //new CopyPlugin({patterns: [{ from: "./src/assets/", to: "../build/assets" },],}),
 
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+
     ],
     module: {
         rules: [
             {
                 test: /\.(js|jsx|mjs)$/i,
+                exclude: /node_modules/,
                 loader: "babel-loader",
             },
             {
@@ -74,6 +85,11 @@ const config = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]',
+                    publicPath: './src/assets/images',
+                    outputPath: 'assets/images/',
+                }
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/i,
@@ -81,7 +97,6 @@ const config = {
                 generator: {                        /*https://webpack.js.org/configuration/module/#modulegenerator*/
                     outputPath: 'fonts/',
                     filename: '[hash][ext][query]', /*https://webpack.js.org/guides/asset-modules/#custom-output-filename*/
-
                 },
             },
         ],
@@ -91,11 +106,18 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = "production";
-        config.output.path = PATHS.dist
+        config.output.path = PATHS.dist;
+        config.plugins[0].userOptions.minify = {
+            collapseWhitespace: true,
+            removeComments: true,
+        }
     } else {
         config.mode = "development";
         config.output.path = PATHS.build;
+        config.devtool = 'source-map';
     }
     return config;
 };
+
+
 
