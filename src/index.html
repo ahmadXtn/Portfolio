@@ -1,150 +1,244 @@
 <!doctype html>
-<html data-theme="cupcake" lang="en,fr">
+<html data-theme="cupcake" lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-
-
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
 
-<!--nav start -->
-<div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="relative flex items-center justify-between">
-        <a href="/" aria-label="Company" title="Company" class="inline-flex items-center">
-            <svg class="w-8 text-deep-purple-accent-400" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2"
-                 stroke-linecap="round" stroke-miterlimit="10" stroke="currentColor" fill="none">
-                <rect x="3" y="1" width="7" height="12"></rect>
-                <rect x="3" y="17" width="7" height="6"></rect>
-                <rect x="14" y="1" width="7" height="6"></rect>
-                <rect x="14" y="11" width="7" height="12"></rect>
-            </svg>
-            <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">BZ AHMAD</span>
-        </a>
-        <ul class="flex items-center hidden space-x-8 lg:flex">
-            <li><a href="/" aria-label="Our product" title="Our product"
-                   class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">à
-                apropos</a></li>
-            <li><a href="/" aria-label="Our product" title="Our product"
-                   class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">parcours</a>
-            </li>
-            <li><a href="/" aria-label="Product pricing" title="Product pricing"
-                   class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">compétances</a>
-            </li>
-            <li><a href="/" aria-label="About us" title="About us"
-                   class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">portfolio</a>
-            </li>
-            <li><a href="/" aria-label="About us" title="About us"
-                   class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none">contact</a>
-            </li>
-        </ul>
-        <!-- Mobile menu -->
-        <div class="lg:hidden">
-            <button aria-label="Open Menu" title="Open Menu"
-                    class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50">
-                <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                          d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"></path>
-                    <path fill="currentColor"
-                          d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"></path>
-                    <path fill="currentColor"
-                          d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"></path>
-                </svg>
-            </button>
-            <!-- Mobile menu dropdown
-            <div class="absolute top-0 left-0 w-full">
-              <div class="p-5 bg-white border rounded shadow-sm">
-                <div class="flex items-center justify-between mb-4">
-                  <div>
-                    <a href="/" aria-label="Company" title="Company" class="inline-flex items-center">
-                      <svg class="w-8 text-deep-purple-accent-400" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke="currentColor" fill="none">
-                        <rect x="3" y="1" width="7" height="12"></rect>
-                        <rect x="3" y="17" width="7" height="6"></rect>
-                        <rect x="14" y="1" width="7" height="6"></rect>
-                        <rect x="14" y="11" width="7" height="12"></rect>
-                      </svg>
-                      <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">Company</span>
-                    </a>
-                  </div>
-                  <div>
-                    <button aria-label="Close Menu" title="Close Menu" class="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-                      <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
-                        <path
-                          fill="currentColor"
-                          d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <nav>
-                  <ul class="space-y-4">
-                    <li><a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Product</a></li>
-                    <li><a href="/" aria-label="Our product" title="Our product" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Features</a></li>
-                    <li><a href="/" aria-label="Product pricing" title="Product pricing" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">Pricing</a></li>
-                    <li><a href="/" aria-label="About us" title="About us" class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400">About us</a></li>
-                    <li>
-                      <a
-                        href="/"
-                        class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            -->
-        </div>
-    </div>
+<div id="portfolio" class="site-wrapper">
+	<div class="site__headerWrapper">
+		<header>
+			<nav class="">
+				<div class="">
+					<div id="logo" class="">
+						<a href="/" aria-label="Company" title="Company" class="inline-flex">
+							<span class="">BZ AHMAD</span>
+						</a>
+					</div>
+					<ul class="">
+						<li class="nav-item"><a href="">accueil</a></li>
+						<li class="nav-item"><a href="">à-propos</a></li>
+						<li class="nav-item"><a href="">parcours</a></li>
+						<li class="nav-item"><a href="">compétences</a></li>
+						<li class="nav-item"><a href="">portfolio</a></li>
+						<li class="nav-item"><a href="">contact</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+	</div>
+	<div class="site__mainWrapper">
+		<main>
+			<section class="main-content_global">
+				<div>
+					<h1 class="">Bouazizi Ahmed</h1>
+					<p>Développeur - Intégrateur Web, actuellement à la recherche d'une opportunité pour mettre en œuvre
+					   mes connaissances au service d'une entreprise.</p>
+					<span>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa eum libero numquam tempore velit.
+					</span>
+					<div>
+						<a href="">github</a>
+						<a href="">linkedin</a>
+						<a href="">email</a>
+						<a href="">facebook</a>
+					</div>
+					<button>consulter mon cv</button>
+					<button>portfolio</button>
+				</div>
+			</section>
+			<section class="about-content">
+				<div>
+					<h2>qui suis-je ?</h2>
+					<div>
+						<h2>bouazizi ahmed</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci asperiores assumenda
+						   delectus distinctio dolor doloremque earum hic id illo ipsa iure iusto laboriosam molestias
+						   nam nesciunt praesentium recusandae repellat sed, sequi suscipit, temporibus unde! Adipisci
+						   alias beatae dignissimos earum error ex ipsam, iste maxime, natus necessitatibus nesciunt
+						   officiis omnis perspiciatis quaerat saepe sunt suscipit tempora voluptatum. Iusto, placeat,
+						   sunt! Adipisci, autem culpa cumque dicta ea eius eum eveniet ex exercitationem explicabo illo
+						   inventore iure laborum maiores modi nesciunt nulla provident quaerat quasi quis quo quod rem,
+						   sapiente, totam unde velit vitae! Earum facere, odio odit quidem quo reiciendis
+						   repellendus.</p>
+					</div>
+				</div>
+			</section>
+			<section class="career-content">
+				<div>
+					<h2>Parcours & Education</h2>
+					<span>Lorem ipsum dolor sit amet.</span>
+				</div>
+				<div>
+					<ul>
+						<li>
+							<h3>Licence appliqué en informatique et Electronique</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nemo.</p>
+						</li>
+						<li>
+							<h3>Licence appliqué en informatique et Electronique</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nemo.</p>
+						</li>
+						<li>
+							<h3>Licence appliqué en informatique et Electronique</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nemo.</p>
+						</li>
+						<li>
+							<h3>Licence appliqué en informatique et Electronique</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nemo.</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="skills-content">
+				<div>
+					<h2>compétences technique</h2>
+					<span>Vous trouverez ci-dessous un bref aperçu de mes principales compétences techniques et des technologies que j'utilise.</span>
+					<div>
+						<div>
+							<h3>HTML</h3>
+							<ul>
+								<li>HTML5</li>
+								<li>Pug</li>
+							</ul>
+						</div>
+						<div>
+							<h3>CSS</h3>
+							<ul>
+								<li>css3</li>
+								<li>sass/scss</li>
+								<li>PostCss</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Javascript</h3>
+							<ul>
+								<li>ES6</li>
+								<li>Babel</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Languages</h3>
+							<ul>
+								<li>nodejs</li>
+								<li>php</li>
+								<li>sql</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Librairies et Frameworks</h3>
+							<ul>
+								<li>Angular</li>
+								<li>React</li>
+								<li>JQUERY</li>
+							</ul>
+						</div>
+						<div>
+							<h3>UI Frameworks</h3>
+							<ul>
+								<li>Bootstrap</li>
+								<li>Tailwindcss</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Design</h3>
+							<ul>
+								<li>Figma</li>
+								<li>PS</li>
+							</ul>
+						</div>
+						<div>
+							<h3>CMS </h3>
+							<ul>
+								<li>WORDPRESS</li>
+							</ul>
+						</div>
+						<div>
+							<h3>VC</h3>
+							<ul>
+								<li>Git</li>
+							</ul>
+						</div>
+						<div>
+							<h3>IDE</h3>
+							<ul>
+								<li>Visual Studio Code</li>
+								<li>WebStorm</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Outils</h3>
+							<ul>
+								<li>Webpack</li>
+								<li>Github</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div>
+				
+				</div>
+			</section>
+			<section class="portfolio-content">
+				<div>
+					<h2>Portfolio</h2>
+					<span>Quelques réalisations</span>
+				</div>
+				<!-- https://fibery.io/ -->
+				<div>
+					<div>
+						<ul>
+							<li><a href="">All</a></li>
+							<li><a href="">Sites Web</a></li>
+							<li><a href="">Javascript</a></li>
+							<li><a href="">Intégration</a></li>
+							<li><a href="">Design</a></li>
+						</ul>
+					</div>
+					<div>
+						<figure class="">
+							<div class="">
+								<img class=""
+								     src="https://tailwindcss.com/_next/static/media/sarah-dayan.a8ff3f1095a58085a82e3bb6aab12eb2.jpg"
+								     alt="" width="150" height="150">
+							</div>
+							<figcaption class="">
+								<h4 class="">
+									Sarah Dayan
+								</h4>
+								<span class="">
+										Staff Engineer, Algolia
+									</span>
+							</figcaption>
+						</figure>
+						<figure class="">
+							<div class="">
+								<img class=""
+								     src="https://tailwindcss.com/_next/static/media/sarah-dayan.a8ff3f1095a58085a82e3bb6aab12eb2.jpg"
+								     alt="" width="150" height="150">
+							</div>
+							<figcaption class="">
+								<div class="text-green-600">
+									Sarah Dayan
+								</div>
+								<div class="text-gray-500">
+									Staff Engineer, Algolia
+								</div>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+	<div class="site__footerWrapper">
+		<footer></footer>
+	</div>
 </div>
-<!--nav end -->
-
-<!-- Header start   -->
-<div class="relative flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0">
-    <div class="inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
-        <svg class="absolute left-0 hidden h-full text-white transform -translate-x-1/2 lg:block" viewBox="0 0 100 100"
-             fill="#fef08a" preserveAspectRatio="none slice">
-            <path d="M50 0H100L50 100H0L50 0Z"></path>
-        </svg>
-        <img class="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
-             src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-             alt=""
-        />
-    </div>
-    <div class="relative flex flex-col items-start w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:max-w-screen-xl">
-        <div class="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
-            <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                Brand new
-            </p>
-            <h2 class="mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                Bouazizi <br class="hidden md:block"/>
-                Ahmad
-                <span class="inline-block text-3xl text-deep-purple-accent-400">Développeur intégrateur web junior</span>
-            </h2>
-            <p class="pr-5 mb-5 text-base text-gray-700 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae. explicabo.
-            </p>
-            <div class="flex items-center">
-                <a href="/"
-                   class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none">
-                    Get started
-                </a>
-                <a href="/" aria-label=""
-                   class="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700">Learn
-                    more</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Header End   -->
 
 
 </body>

@@ -4,6 +4,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -19,12 +20,15 @@ const PATHS = {
 
 const config = {
     entry: "./src/index.js",
+    target: 'web',
+    cache: {
+        type: 'memory',
+    },
     //entry: {app:"./src/index.js"},
     output: {
-        filename: '[name].js',
+        filename: '[name].[fullhash:8].js',
         path: PATHS.build,
         clean: true,
-        asyncChunks: false,
     },
 
     /* https://webpack.js.org/configuration/optimization/ */
@@ -37,14 +41,19 @@ const config = {
         },
         splitChunks: {
             chunks: 'all',
-        }
+        },
+        minimizer: [
+            new CssMinimizerPlugin(),
+        ],
+        //css oprimization in dev set to false
+        minimize: false,
         // The value 'single' instead creates a runtime file to be shared for all generated chunks
     },
     devServer: {
         open: false,
         host: "localhost",
         port: 3300,
-        watchFiles: ['src/**/*.html', 'src/**/*.css', 'src/**/*.js'],
+        watchFiles: ["src/**/*.html", "src/**/*.css", "src/**/*.js"]
     },
     /* https://webpack.js.org/configuration/plugins/ */
     plugins: [
@@ -57,7 +66,8 @@ const config = {
             /*https://github.com/kangax/html-minifier#options-quick-reference*/
         }),
         new MiniCssExtractPlugin({
-            chunkFilename: '[id].css',
+            filename: "[name].css",
+            chunkFilename: "[id].css"
         }),
         //new CopyPlugin({patterns: [{ from: "./src/assets/", to: "../build/assets" },],}),
 
